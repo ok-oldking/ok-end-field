@@ -1,0 +1,15 @@
+name: "ok-boilerplate"
+uac: true
+profiles:
+  - name: "Release"
+    git_url: "https://github.com/ok-oldking/ok-script-boilerplate"
+    admin: true
+    main_script: "main.py"
+    requires_python: "3.12"
+    requirements: "requirements.txt"
+    use_pythonw: true
+    show_add_defender: true
+
+  - name: "Debug"
+    main_script: "main_debug.py"
+    requirements: "requirements.txt"

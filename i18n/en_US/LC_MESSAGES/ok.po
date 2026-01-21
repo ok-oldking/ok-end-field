@@ -1,0 +1,85 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: you@example.com\n"
+"Last-Translator: you@example.com\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "一键日常"
+msgstr "One-click Dailies"
+
+msgid "从要推的图的最左边开始"
+msgstr "Start from the leftmost stage to clear"
+
+msgid "体力本"
+msgstr "Stamina Stage"
+
+msgid "公共区"
+msgstr "Public Area"
+
+msgid "兵棋推演"
+msgstr "War Chess Simulation"
+
+msgid "军备解析"
+msgstr "Armament Analysis"
+
+msgid "冲锋"
+msgstr "SMG & MG"
+
+msgid "决策构象"
+msgstr "Decision Configuration"
+
+msgid "刷钱本"
+msgstr "Gold Farming Stage"
+
+msgid "大月卡"
+msgstr "Premium Monthly Card"
+
+msgid "尘烟"
+msgstr "Dust Smoke"
+
+msgid "手枪"
+msgstr "HG"
+
+msgid "推图"
+msgstr "Clear Stages"
+
+msgid "收菜"
+msgstr "Collect Resources"
+
+msgid "活动情报补给"
+msgstr "Event Intel Supply"
+
+msgid "活动自律"
+msgstr "Event Auto-Battle"
+
+msgid "深度搜索"
+msgstr "Deep Search"
+
+msgid "狙击"
+msgstr "RF & BLD"
+
+msgid "班组"
+msgstr "Squad"
+
+msgid "突击"
+msgstr "AR & SG"
+
+msgid "竞技场"
+msgstr "Arena"
+
+msgid "自动刷体力"
+msgstr "Auto-Farm Stamina"
+
+msgid "购买免费礼包"
+msgstr "Claim Free Pack"
+
+msgid "邮件"
+msgstr "Mail"
+
+msgid "领任务"
+msgstr "Claim Missions"

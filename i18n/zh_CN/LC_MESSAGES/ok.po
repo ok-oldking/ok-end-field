@@ -1,0 +1,85 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: you@example.com\n"
+"Last-Translator: you@example.com\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "一键日常"
+msgstr ""
+
+msgid "从要推的图的最左边开始"
+msgstr ""
+
+msgid "体力本"
+msgstr ""
+
+msgid "公共区"
+msgstr ""
+
+msgid "兵棋推演"
+msgstr ""
+
+msgid "军备解析"
+msgstr ""
+
+msgid "冲锋"
+msgstr ""
+
+msgid "决策构象"
+msgstr ""
+
+msgid "刷钱本"
+msgstr ""
+
+msgid "大月卡"
+msgstr ""
+
+msgid "尘烟"
+msgstr ""
+
+msgid "手枪"
+msgstr ""
+
+msgid "推图"
+msgstr ""
+
+msgid "收菜"
+msgstr ""
+
+msgid "活动情报补给"
+msgstr ""
+
+msgid "活动自律"
+msgstr ""
+
+msgid "深度搜索"
+msgstr ""
+
+msgid "狙击"
+msgstr ""
+
+msgid "班组"
+msgstr ""
+
+msgid "突击"
+msgstr ""
+
+msgid "竞技场"
+msgstr ""
+
+msgid "自动刷体力"
+msgstr ""
+
+msgid "购买免费礼包"
+msgstr ""
+
+msgid "邮件"
+msgstr ""
+
+msgid "领任务"
+msgstr ""

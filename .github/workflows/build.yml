@@ -1,0 +1,86 @@
+name: Build
+
+on:
+  push:
+    # Sequence of patterns matched against refs/tags
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    env:
+      PYTHONIOENCODING: 'UTF-8'
+
+    strategy:
+      matrix:
+        python-version: [ 3.12 ]
+
+    steps:
+      - name: Configure git
+        run: |
+          [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
+          git config --global core.autocrlf false
+          git config --global core.eol lf
+          git config --global user.email "ok-oldking@users.noreply.github.com"
+          git config --global user.name "ok-oldking"
+          echo "action_state=yellow" >> $env:GITHUB_ENV
+          echo "${{ env.action_state }}"
+
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Set UTF-8 encoding
+        run: |
+          set PYTHONIOENCODING=utf-8
+          set PYTHONLEGACYWINDOWSSTDIO=utf-8
+          echo PYTHONIOENCODING=utf-8 >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: inline_ok_requirements #把ok-script加入源码, 从requirements.txt中删除以提高升级更新速度
+        run: |
+          python -m ok.update.inline_ok_requirements --tag ${{ github.ref_name }}
+
+      - name: Run tests
+        run: |
+          Get-ChildItem -Path ".\tests\*.py" | ForEach-Object {
+              Write-Host "Running tests in $($_.FullName)"
+              python -m unittest $_.FullName
+          }
+
+      - name: Sync Repositories # 同步部分代码(deploy.txt中), 合并tag中间更新日志, 到更新库, 以减少用户更新使用的git库大小
+        id: sync   # Give the step an ID to access its outputs
+        uses: ok-oldking/partial-sync-repo@master
+        with:
+          repos: |
+            https://ok-oldking:${{ secrets.OK_GH }}@github.com/ok-oldking/ok-boilerplate-update.git
+          sync_list: 'deploy.txt'
+          tag: ${{ github.ref_name }}
+          gitignore_file: '.update_repo_gitignore'
+          show_author: true #在更新日志中加入作者
+
+      - name: Build with PyAppify Action
+        id: build-app
+        uses: ok-oldking/pyappify-action@master #使用pyappify打包exe
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          draft: false
+          body: |
+            ###  更新日志 ${{ steps.sync.outputs.start_tag }} -> ${{ steps.sync.outputs.end_tag }}:
+                          ${{ steps.sync.outputs.changes_with_asterisk }}
+            ### 下载Release-setup.exe, 下载后可应用内更新
+          files: pyappify_dist/*
+

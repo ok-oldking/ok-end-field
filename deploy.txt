@@ -1,0 +1,10 @@
+src
+ok
+main.py
+main_debug.py
+icons
+requirements.txt
+README.md
+i18n
+assets
+pyappify.yml
