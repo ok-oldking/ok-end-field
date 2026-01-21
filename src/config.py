@@ -14,33 +14,32 @@ key_config_option = ConfigOption('Game Hotkey Config', { #全局配置示例
 }, description='In Game Hotkey for Skills')
 
 
-def make_bottom_right_black(frame): #可选. 某些游戏截图时遮挡UID使用
+def make_bottom_left_black(frame): #可选. 某些游戏截图时遮挡UID使用
     """
-    Changes a portion of the frame's pixels at the bottom right to black.
+    将图像左下角的一部分像素修改为黑色。
 
-    Args:
-        frame: The input frame (NumPy array) from OpenCV.
+    参数:
+        frame: 来自 OpenCV 的输入图像 (NumPy 数组)。
 
-    Returns:
-        The modified frame with the bottom-right corner blackened.  Returns the original frame
-        if there's an error (e.g., invalid frame).
+    返回:
+        左下角被遮挡后的图像。如果发生错误（例如无效图像），则返回原始图像。
     """
     try:
-        height, width = frame.shape[:2]  # Get height and width
+        height, width = frame.shape[:2]  # 获取高度和宽度
 
-        # Calculate the size of the black rectangle
-        black_width = int(0.13 * width)
-        black_height = int(0.025 * height)
+        # 计算黑色矩形的大小
+        black_width = int(0.072 * width)
+        black_height = int(0.034 * height)
 
-        # Calculate the starting coordinates of the rectangle
-        start_x = width - black_width
+        # 计算左下角矩形的起始坐标
+        start_x = int(0.054 * width)
         start_y = height - black_height
 
-        # Create a black rectangle (NumPy array of zeros)
-        black_rect = np.zeros((black_height, black_width, frame.shape[2]), dtype=frame.dtype)  # Ensure same dtype
+        # 创建黑色矩形 (NumPy 0 数组)
+        black_rect = np.zeros((black_height, black_width, frame.shape[2]), dtype=frame.dtype)  # 确保数据类型一致
 
-        # Replace the bottom-right portion of the frame with the black rectangle
-        frame[start_y:height, start_x:width] = black_rect
+        # 用黑色矩形替换图像的左下角部分
+        frame[start_y:height, start_x:start_x+black_width] = black_rect
 
         return frame
     except Exception as e:
@@ -52,7 +51,7 @@ config = {
     'use_gui': True, # 目前只支持True
     'config_folder': 'configs', #最好不要修改
     'global_configs': [key_config_option],
-    'screenshot_processor': make_bottom_right_black, # 在截图的时候对frame进行修改, 可选
+    'screenshot_processor': make_bottom_left_black, # 在截图的时候对frame进行修改, 可选
     'gui_icon': 'icons/icon.png', #窗口图标, 最好不需要修改文件名
     'wait_until_before_delay': 0,
     'wait_until_check_delay': 0,
