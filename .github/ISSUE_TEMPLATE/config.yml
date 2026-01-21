@@ -1,0 +1,11 @@
+# 禁止创建空白 Issue (即不通过模版直接创建)
+blank_issues_enabled: false
+
+contact_links:
+  - name: 💡 功能建议 / Feature Request
+    url: https://github.com/ok-oldking/ok-end-field/discussions/new?category=ideas
+    about: 对项目有新想法？请去讨论区分享！ / Have a new idea? Share it in Discussions!
+    
+  - name: 💬 提问与讨论 / Q&A
+    url: https://github.com/ok-oldking/ok-end-field/discussions/new?category=q-a
+    about: 遇到非 Bug 类的问题，请去讨论区提问。 / Questions? Ask in Discussions.

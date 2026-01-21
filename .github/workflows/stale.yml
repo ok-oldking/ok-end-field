@@ -1,0 +1,52 @@
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+    # 每天执行一次（UTC 00:00）
+    - cron: '0 0 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+          # 多久无活动后标记为 stale
+          days-before-stale: 30
+
+          # 标记为 stale 后，多久自动关闭
+          days-before-close: 7
+
+          # stale 标签名
+          stale-issue-label: stale
+          stale-pr-label: stale
+
+          # 标记为 stale 时的留言
+          stale-issue-message: >
+            This issue has been automatically marked as stale because it has not
+            had recent activity. It will be closed if no further activity occurs.
+
+          stale-pr-message: >
+            This pull request has been automatically marked as stale because it has
+            not had recent activity. It will be closed if no further activity occurs.
+
+          # 关闭时的留言
+          close-issue-message: >
+            Closing this issue due to inactivity.
+
+          close-pr-message: >
+            Closing this pull request due to inactivity.
+
+          # 有这些标签的 issue / PR 不会被处理
+          exempt-issue-labels: pinned,security
+          exempt-pr-labels: pinned,security
+
+          # 有 assignee 的不处理（可选）
+          exempt-all-assignees: false
+
+          # 有 milestone 的不处理（可选）
+          exempt-all-milestones: true
