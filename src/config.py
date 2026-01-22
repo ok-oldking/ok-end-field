@@ -109,6 +109,6 @@ config = {
         ["ok", "DiagnosisTask"],
     ],
     'trigger_tasks':[ # 不断执行的触发式任务
-        ["src.tasks.AutoLoginTask", "AutoLoginTask"],
+        ["src.tasks.AutoCombatTask", "AutoCombatTask"],
     ]
 }

@@ -8,6 +8,9 @@ class BaseEfTask(BaseTask):
         super().__init__(*args, **kwargs)
         self._logged_in = False
 
+    def in_bg(self):
+        return not self.hwnd.is_foreground()
+
     def wait_login(self):
         if not self._logged_in:
             # if self.find_one('login_account', vertical_variance=0.1, threshold=0.7):
