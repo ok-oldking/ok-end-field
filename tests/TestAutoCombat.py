@@ -37,8 +37,13 @@ class TestMyOneTimeTask(TaskTestCase):
         count = self.task.get_skill_bar_count()
         self.assertEqual(count, 1)
 
+        self.set_image('tests/images/in_combat_2.png')
+        count = self.task.get_skill_bar_count()
+        self.assertEqual(count, 2)
 
-
+        self.set_image('tests/images/in_combat_white_red.png')
+        count = self.task.get_skill_bar_count()
+        self.assertEqual(count, 0)
 
 if __name__ == '__main__':
     unittest.main()

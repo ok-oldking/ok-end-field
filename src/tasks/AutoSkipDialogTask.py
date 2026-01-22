@@ -1,3 +1,5 @@
+import time
+
 from qfluentwidgets import FluentIcon
 
 from ok import TriggerTask, Logger
@@ -15,12 +17,14 @@ class AutoSkipDialogTask(BaseEfTask, TriggerTask):
         self.icon = FluentIcon.ACCEPT
 
     def run(self):
-        if self.find_one('skip_dialog_esc'):
+        if self.find_one('skip_dialog_esc', horizontal_variance=0.05):
            self.send_key('esc', after_sleep=0.1)
-           confirm = self.find_confirm()
-           if confirm:
-               self.click(confirm, after_sleep=0.1)
-           else:
-               self.log_error('can not find confirm after esc in AutoSkipDialogTask')
+           start = time.time()
+           while time.time() - start < 1:
+               confirm = self.find_confirm()
+               if confirm:
+                   self.click(confirm, after_sleep=0.1)
+               else:
+                   break
 
 
