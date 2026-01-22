@@ -14,12 +14,13 @@ class AutoCombatTask(BaseEfTask, TriggerTask):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.default_config = {'_enabled': True}
-        self.name = "自动战斗"
-        self.description = "自动战斗"
+        self.name = "自动战斗(必须在游戏设置里, 将按键6添加为普攻按钮)"
+        self.description = "自动战斗(进入战斗后自动战斗知道结束)"
         self.icon = FluentIcon.ACCEPT
-        self.skill_sequence = ["1", "2", "4"]
+        self.skill_sequence = ["2", "1", "1"]
 
     def run(self):
+        self.log_debug('AutoCombatTask.run()')
         bar_count = self.get_skill_bar_count()
         if self.get_skill_bar_count() < 0 or not self.in_team():
             return
@@ -62,7 +63,7 @@ class AutoCombatTask(BaseEfTask, TriggerTask):
                             break
                         self.next_frame()
             else:
-                self.send_key("9",  after_sleep=0.1)
+                self.send_key("6",  after_sleep=0.1)
             self.sleep(0.01)
 
     def use_ult(self):
