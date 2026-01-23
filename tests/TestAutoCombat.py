@@ -13,9 +13,14 @@ class TestMyOneTimeTask(TaskTestCase):
     config = config
 
     def test_skill_bars(self):
+
         self.set_image('tests/images/in_combat_1440p.png')
         count = self.task.get_skill_bar_count()
         self.assertEqual(count, 3)
+
+        self.set_image('tests/images/not_in_combat.png')
+        count = self.task.get_skill_bar_count()
+        self.assertEqual(count, -1)
 
         self.set_image('tests/images/in_combat_4.png')
         count = self.task.get_skill_bar_count()

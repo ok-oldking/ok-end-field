@@ -1,5 +1,6 @@
 import time
 
+import cv2
 import numpy as np
 from qfluentwidgets import FluentIcon
 
@@ -46,7 +47,7 @@ class AutoCombatTask(BaseEfTask, TriggerTask):
                 self.log_info("自动战斗结束!", notify=self.config.get("后台结束战斗通知") and self.in_bg())
                 if self.debug:
                     self.screenshot('out_of_combat')
-                if self.wait_in_combat():
+                if self.wait_in_combat(click=True):
                     self.log_debug('re-enter combat')
                     self.click(key='middle')
                     continue
@@ -123,8 +124,16 @@ class AutoCombatTask(BaseEfTask, TriggerTask):
                 self.send_key_up(ult)
                 self.wait_in_combat(time_out=6)
                 return True
-    def wait_in_combat(self, time_out=3):
-        return self.wait_until(self.in_combat, time_out=time_out)
+
+    def wait_in_combat(self, time_out=3, click=False):
+        start = time.time()
+        while time.time() - start < time_out:
+            if self.in_combat():
+                return True
+            elif click:
+                self.click(after_sleep=0.4)
+            else:
+                self.sleep(0.1)
 
     def use_e_skill(self):
         if skill_e := self.find_one('skill_e', threshold=0.7):
@@ -139,9 +148,16 @@ class AutoCombatTask(BaseEfTask, TriggerTask):
         return self.find_one('skill_1') and self.find_one('skill_2') and self.find_one('skill_3') and self.find_one('skill_4')
 
     def get_skill_bar_count(self):
+
+        skill_area = self.frame[self.height_of_screen(1943 / 2160):self.height_of_screen(1983 / 2160),
+              self.width_of_screen(1597 / 3840):self.width_of_screen(2259 / 3840)]
+        # self.screenshot('skill_area', frame=skill_area)
+        if not has_rectangles(skill_area):
+            return -1
+
         count = 0
         y_start = 1958
-        y_end = 1964
+        y_end = 1970
         if self.check_is_pure_color_in_4k(1604, y_start, 1796, y_end, yellow_skill_color):
             count += 1
             if self.check_is_pure_color_in_4k(1824, y_start, 2013, y_end, yellow_skill_color):
@@ -204,7 +220,7 @@ class AutoCombatTask(BaseEfTask, TriggerTask):
 
         return False
 
-def count_charged_bars(frame):
+def has_rectangles(frame):
     """
     Analyzes an OpenCV frame to look for 3 bars and count how many are yellow.
 
@@ -246,75 +262,8 @@ def count_charged_bars(frame):
         if 2.5 < aspect_ratio < 15.0:
             potential_bars.append((x, y, w, h))
 
-    # 3. GROUPING LOGIC
-    # We need to find 3 bars that are aligned horizontally and are roughly the same size.
-    potential_bars.sort(key=lambda b: b[1])  # Sort by Y coordinate
-
-    final_bars = []
-
-    # Iterate through bars to find a cluster of 3
-    for i in range(len(potential_bars)):
-        group = [potential_bars[i]]
-        ref_x, ref_y, ref_w, ref_h = potential_bars[i]
-
-        for j in range(i + 1, len(potential_bars)):
-            cx, cy, cw, ch = potential_bars[j]
-
-            # Check vertical alignment (pixels should be close in Y axis)
-            y_diff = abs(ref_y - cy)
-            # Check size similarity (comparing widths and heights)
-            w_diff = abs(ref_w - cw) / ref_w
-            h_diff = abs(ref_h - ch) / ref_h
-
-            # Allow small pixel alignment error and 20% size variance
-            if y_diff < 10 and w_diff < 0.2 and h_diff < 0.2:
-                group.append((cx, cy, cw, ch))
-
-        # If we found a cluster of exactly 3 similar rectangles
-        if len(group) == 3:
-            final_bars = group
-            break
-
-    # If we didn't find exactly 3 matching bars, return -1
-    if len(final_bars) != 3:
-        return -1
-
-    # 4. COLOR ANALYSIS (Using User Provided RGB Range)
-    yellow_bar_count = 0
-
-    # Map RGB dictionary to OpenCV BGR [Blue, Green, Red]
-    # R: 230-255, G: 180-255, B: 0-85
-    lower_bgr = np.array([0, 180, 230], dtype="uint8")
-    upper_bgr = np.array([85, 255, 255], dtype="uint8")
-
-    for (x, y, w, h) in final_bars:
-        # Extract the Region of Interest (ROI)
-        # We shrink the box by 2 pixels to avoid the dark gray border edge
-        padding = 2
-        roi = frame[y + padding:y + h - padding, x + padding:x + w - padding]
-
-        if roi.size == 0: continue
-
-        # Create a mask using the specific BGR range
-        mask = cv2.inRange(roi, lower_bgr, upper_bgr)
-
-        # Count pixels that match the yellow range
-        yellow_pixels = cv2.countNonZero(mask)
-        total_pixels = roi.shape[0] * roi.shape[1]
-
-        # Calculate fill ratio
-        fill_ratio = yellow_pixels / total_pixels
-
-        # Logic:
-        # 1. White (Charging) usually has high Blue (~255). It will fail the B<85 check.
-        # 2. Dark Gray (Empty) usually has low Red/Green. It will fail the R>230 check.
-        # 3. Only Yellow passes.
-
-        if fill_ratio > 0.5:
-            yellow_bar_count += 1
-
-    return yellow_bar_count
-
+    if len(potential_bars) >= 1:
+        return True
 
 yellow_skill_color = {
     'r': (230, 255),  # Red range
