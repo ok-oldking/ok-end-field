@@ -72,7 +72,8 @@ class AutoCombatTask(BaseEfTask, TriggerTask):
                             break
                     # use skill
                     start = time.time()
-                    while time.time() - start < 3:
+                    last_attack = start
+                    while time.time() - start < 6:
                         count = self.get_skill_bar_count()
                         if count == current_count:
                             self.send_key(skill_sequence[i], after_sleep=0.1)
@@ -84,6 +85,9 @@ class AutoCombatTask(BaseEfTask, TriggerTask):
                         elif count < current_count:
                             self.log_debug('use skill success')
                             break
+                        elif time.time() - last_attack > 0.5:
+                            last_attack = time.time()
+                            self.click(after_sleep=0.1)
                         self.next_frame()
             else:
                 if key:=self.config.get("攻击快捷键"):
