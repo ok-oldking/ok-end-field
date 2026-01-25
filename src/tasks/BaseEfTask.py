@@ -20,7 +20,7 @@ class BaseEfTask(BaseTask):
         return self.find_one('skip_dialog_confirm', horizontal_variance=0.05, vertical_variance=0.05)
 
     def in_world(self):
-        return self.find_one('top_left_tab', horizontal_variance=0.01)
+        return self.find_one('top_left_tab')
 
     def find_f(self):
         return self.find_one('pick_f', vertical_variance=0.05)
