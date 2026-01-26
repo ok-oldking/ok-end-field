@@ -12,14 +12,13 @@ class AutoLoginTask(BaseEfTask, TriggerTask):
         super().__init__(*args, **kwargs)
         self.default_config = {'_enabled': True}
         self.trigger_interval = 5
-        self.name = "Auto Login"
-        self.description = "Auto Login After Game Starts"
+        self.name = "自动登录"
+        self.description = "自动登录领月卡"
         self.icon = FluentIcon.ACCEPT
 
     def run(self):
         if self._logged_in:
-            pass
-        # elif self.scene.in_team(self.in_team_and_world):
-        #     self._logged_in = True
+            return
+
         else:
             return self.wait_login()

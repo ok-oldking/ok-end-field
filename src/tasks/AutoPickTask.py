@@ -20,7 +20,7 @@ class AutoPickTask(BaseEfTask, TriggerTask):
         self.default_config = {'_enabled': True}
         self.last_box_name = None
         self.last_pick_time = 0
-        self.white_list = {'采集', '萤壳虫', '打开', '荞花', '灰芦麦', '灼壳虫', '苦叶椒', "轻红柱状菌", "酮化灌木",
+        self.white_list = {'采集', '萤壳虫', '打开', '荞花', '灰芦麦', '灼壳虫', '苦叶椒', "柱状菌", "酮化灌木",
                            '柑实', "触碰", '激活', '芽针'
                            }
         self.black_list = {

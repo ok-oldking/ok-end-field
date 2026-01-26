@@ -23,67 +23,125 @@
             "height": 2160,
             "id": 3,
             "file_name": "images/3.png"
+        },
+        {
+            "width": 3840,
+            "height": 2160,
+            "id": 4,
+            "file_name": "images/4.png"
+        },
+        {
+            "width": 3840,
+            "height": 2160,
+            "id": 5,
+            "file_name": "images/5.png"
+        },
+        {
+            "width": 3840,
+            "height": 2160,
+            "id": 6,
+            "file_name": "images/6.png"
+        },
+        {
+            "width": 3840,
+            "height": 2160,
+            "id": 7,
+            "file_name": "images/7.png"
+        },
+        {
+            "width": 3840,
+            "height": 2160,
+            "id": 8,
+            "file_name": "images/8.png"
         }
     ],
     "categories": [
         {
             "id": 0,
-            "name": "pick_f"
+            "name": "check_in_close"
         },
         {
             "id": 1,
-            "name": "skill_1"
+            "name": "logout"
         },
         {
             "id": 2,
-            "name": "skill_2"
+            "name": "monthly_card"
         },
         {
             "id": 3,
-            "name": "skill_3"
+            "name": "one_click_claim"
         },
         {
             "id": 4,
-            "name": "skill_4"
+            "name": "pick_f"
         },
         {
             "id": 5,
-            "name": "skill_e"
+            "name": "pick_recycle"
         },
         {
             "id": 6,
-            "name": "skip_dialog_cancel"
+            "name": "reward_ok"
         },
         {
             "id": 7,
-            "name": "skip_dialog_confirm"
+            "name": "skill_1"
         },
         {
             "id": 8,
-            "name": "skip_dialog_esc"
+            "name": "skill_2"
         },
         {
             "id": 9,
-            "name": "switch_q"
+            "name": "skill_3"
         },
         {
             "id": 10,
-            "name": "top_left_tab"
+            "name": "skill_4"
         },
         {
             "id": 11,
-            "name": "ult_1"
+            "name": "skill_e"
         },
         {
             "id": 12,
-            "name": "ult_2"
+            "name": "skip_dialog_cancel"
         },
         {
             "id": 13,
-            "name": "ult_3"
+            "name": "skip_dialog_confirm"
         },
         {
             "id": 14,
+            "name": "skip_dialog_esc"
+        },
+        {
+            "id": 15,
+            "name": "switch_q"
+        },
+        {
+            "id": 16,
+            "name": "team_char_lv"
+        },
+        {
+            "id": 17,
+            "name": "top_left_tab"
+        },
+        {
+            "id": 18,
+            "name": "ult_1"
+        },
+        {
+            "id": 19,
+            "name": "ult_2"
+        },
+        {
+            "id": 20,
+            "name": "ult_3"
+        },
+        {
+            "id": 21,
             "name": "ult_4"
         }
     ],
@@ -91,7 +149,7 @@
         {
             "id": 0,
             "image_id": 0,
-            "category_id": 8,
+            "category_id": 14,
             "segmentation": [],
             "bbox": [
                 3708.3738345911215,
@@ -106,7 +164,7 @@
         {
             "id": 1,
             "image_id": 1,
-            "category_id": 7,
+            "category_id": 13,
             "segmentation": [],
             "bbox": [
                 2477.463976945245,
@@ -121,7 +179,7 @@
         {
             "id": 2,
             "image_id": 1,
-            "category_id": 6,
+            "category_id": 12,
             "segmentation": [],
             "bbox": [
                 1755.3890489913545,
@@ -136,7 +194,7 @@
         {
             "id": 3,
             "image_id": 2,
-            "category_id": 0,
+            "category_id": 4,
             "segmentation": [],
             "bbox": [
                 2460.9103133051094,
@@ -151,7 +209,7 @@
         {
             "id": 4,
             "image_id": 3,
-            "category_id": 5,
+            "category_id": 11,
             "segmentation": [],
             "bbox": [
                 2212.9400023970443,
@@ -166,7 +224,7 @@
         {
             "id": 5,
             "image_id": 3,
-            "category_id": 11,
+            "category_id": 18,
             "segmentation": [],
             "bbox": [
                 3136.4714762113813,
@@ -181,7 +239,7 @@
         {
             "id": 6,
             "image_id": 3,
-            "category_id": 12,
+            "category_id": 19,
             "segmentation": [],
             "bbox": [
                 3331.898546136315,
@@ -196,7 +254,7 @@
         {
             "id": 7,
             "image_id": 3,
-            "category_id": 13,
+            "category_id": 20,
             "segmentation": [],
             "bbox": [
                 3521.1008321995746,
@@ -211,7 +269,7 @@
         {
             "id": 8,
             "image_id": 3,
-            "category_id": 14,
+            "category_id": 21,
             "segmentation": [],
             "bbox": [
                 3718.29055544616,
@@ -226,7 +284,7 @@
         {
             "id": 9,
             "image_id": 3,
-            "category_id": 1,
+            "category_id": 7,
             "segmentation": [],
             "bbox": [
                 3140.4034582132563,
@@ -241,7 +299,7 @@
         {
             "id": 10,
             "image_id": 3,
-            "category_id": 2,
+            "category_id": 8,
             "segmentation": [],
             "bbox": [
                 3330.259365994233,
@@ -256,7 +314,7 @@
         {
             "id": 11,
             "image_id": 3,
-            "category_id": 3,
+            "category_id": 9,
             "segmentation": [],
             "bbox": [
                 3525.6541980160646,
@@ -271,7 +329,7 @@
         {
             "id": 12,
             "image_id": 3,
-            "category_id": 4,
+            "category_id": 10,
             "segmentation": [],
             "bbox": [
                 3717.9956243302486,
@@ -286,7 +344,7 @@
         {
             "id": 13,
             "image_id": 3,
-            "category_id": 9,
+            "category_id": 15,
             "segmentation": [],
             "bbox": [
                 45.75523580080622,
@@ -301,7 +359,7 @@
         {
             "id": 14,
             "image_id": 3,
-            "category_id": 10,
+            "category_id": 17,
             "segmentation": [],
             "bbox": [
                 221.7529448919404,
@@ -312,6 +370,96 @@
             "ignore": 0,
             "iscrowd": 0,
             "area": 3177.935383662307
+        },
+        {
+            "id": 15,
+            "image_id": 4,
+            "category_id": 5,
+            "segmentation": [],
+            "bbox": [
+                2544.9448954376685,
+                1428.4506162806347,
+                38.75224707487251,
+                45.11431090951097
+            ],
+            "ignore": 0,
+            "iscrowd": 0,
+            "area": 1748.2809229779853
+        },
+        {
+            "id": 16,
+            "image_id": 5,
+            "category_id": 1,
+            "segmentation": [],
+            "bbox": [
+                3723.652289581649,
+                458.7196129593233,
+                52.97774517542819,
+                53.62705650210559
+            ],
+            "ignore": 0,
+            "iscrowd": 0,
+            "area": 2841.040533876839
+        },
+        {
+            "id": 17,
+            "image_id": 6,
+            "category_id": 2,
+            "segmentation": [],
+            "bbox": [
+                31.123919308357355,
+                1033.314121037464,
+                196.08069164265132,
+                84.03458213256455
+            ],
+            "ignore": 0,
+            "iscrowd": 0,
+            "area": 16477.558986454445
+        },
+        {
+            "id": 18,
+            "image_id": 7,
+            "category_id": 6,
+            "segmentation": [],
+            "bbox": [
+                1889.221902017291,
+                1960.806916426513,
+                62.24783861671449,
+                68.472622478386
+            ],
+            "ignore": 0,
+            "iscrowd": 0,
+            "area": 4262.272753697789
+        },
+        {
+            "id": 19,
+            "image_id": 8,
+            "category_id": 3,
+            "segmentation": [],
+            "bbox": [
+                2667.3198847262247,
+                890.1440922190202,
+                130.72046109510137,
+                62.24783861671468
+            ],
+            "ignore": 0,
+            "iscrowd": 0,
+            "area": 8137.0661661504
+        },
+        {
+            "id": 20,
+            "image_id": 8,
+            "category_id": 0,
+            "segmentation": [],
+            "bbox": [
+                3286.1983854243463,
+                421.3728724858323,
+                57.93548486287133,
+                58.64795314768995
+            ],
+            "ignore": 0,
+            "iscrowd": 0,
+            "area": 3397.7976018263776
         }
     ],
     "info": {
@@ -320,6 +468,6 @@
         "description": "",
         "contributor": "Label Studio",
         "url": "",
-        "date_created": "2026-01-22 18:31:08.997023"
+        "date_created": "2026-01-26 09:44:19.072040"
     }
 }

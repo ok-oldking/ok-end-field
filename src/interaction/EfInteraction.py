@@ -11,11 +11,13 @@ from ok import PostMessageInteraction, Logger
 
 logger = Logger.get_logger(__name__)
 
+
 class RECT(ctypes.Structure):
     _fields_ = [("left", ctypes.c_long),
                 ("top", ctypes.c_long),
                 ("right", ctypes.c_long),
                 ("bottom", ctypes.c_long)]
+
 
 class EfInteraction(PostMessageInteraction):
 
@@ -34,7 +36,7 @@ class EfInteraction(PostMessageInteraction):
             click_pos = win32api.MAKELONG(x, y)
             win32api.SetCursorPos((abs_x, abs_y))
             move_Cursor = True
-            time.sleep(0.001)
+            time.sleep(0.002)
         if key == "left":
             btn_down = win32con.WM_LBUTTONDOWN
             btn_mk = win32con.MK_LBUTTON
@@ -78,7 +80,7 @@ class EfInteraction(PostMessageInteraction):
                 rect = RECT()
                 ctypes.windll.user32.GetClipCursor(ctypes.byref(rect))
                 sx, sy = GetSystemMetrics(0), GetSystemMetrics(1)
-                
+
                 # 检查是否被限制(Clip) 或 发生长距离跳变(>200像素, 可能是游戏强制回中)
                 is_clipped = (rect.right - rect.left) < sx or (rect.bottom - rect.top) < sy
                 # is_jumped = (pos[0] - self.cursor_position[0])**2 + (pos[1] - self.cursor_position[1])**2 > 40000
