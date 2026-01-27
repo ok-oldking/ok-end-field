@@ -30,11 +30,11 @@ class BaseEfTask(BaseTask):
             if self.in_world():
                 self._logged_in = True
                 return True
-            elif self.find_one('monthly_card') or self.find_one('logout') or self.find_one(
-                    'reward_ok') or self.find_one(
-                'one_click_claim'):
+            elif self.find_one('monthly_card') or self.find_one('logout'):
                 self.click(after_sleep=1)
                 return False
-            elif close := self.find_one('check_in_close', threshold=0.75):
+            elif close := (self.find_one('check_in_close', threshold=0.75) or self.find_one(
+                    'reward_ok') or self.find_one(
+                'one_click_claim')):
                 self.click(close, after_sleep=1)
                 return False

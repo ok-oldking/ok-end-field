@@ -19,6 +19,5 @@ class AutoLoginTask(BaseEfTask, TriggerTask):
     def run(self):
         if self._logged_in:
             return
-
         else:
             return self.wait_login()

@@ -5,16 +5,9 @@ from ok import ConfigOption
 from src.interaction.EfInteraction import EfInteraction
 
 version = "dev"
+
+
 # 不需要修改version, Github Action打包会自动修改
-
-key_config_option = ConfigOption('Game Hotkey Config', {  # 全局配置示例
-    'Echo Key': 'q',
-    'Liberation Key': 'r',
-    'Resonance Key': 'e',
-    'Tool Key': 't',
-}, description='In Game Hotkey for Skills')
-
-
 def make_bottom_left_black(frame):  # 可选. 某些游戏截图时遮挡UID使用
     """
     将图像左下角的一部分像素修改为黑色。
@@ -52,7 +45,6 @@ config = {
     'debug': False,  # Optional, default: False
     'use_gui': True,  # 目前只支持True
     'config_folder': 'configs',  # 最好不要修改
-    'global_configs': [key_config_option],
     'screenshot_processor': make_bottom_left_black,  # 在截图的时候对frame进行修改, 可选
     'gui_icon': 'icons/icon.png',  # 窗口图标, 最好不需要修改文件名
     'wait_until_before_delay': 0,
@@ -120,7 +112,7 @@ config = {
     'my_app': ['src.globals', 'Globals'],  # 可选. 全局单例对象, 可以存放加载的模型, 使用og.my_app调用
     'onetime_tasks': [  # 用户点击触发的任务
         ["src.tasks.DailyTask", "DailyTask"],
-        ["ok", "DiagnosisTask"],
+        ["ok.task.DiagnosisTask", "DiagnosisTask"],
     ],
     'trigger_tasks': [  # 不断执行的触发式任务
         ["src.tasks.AutoCombatTask", "AutoCombatTask"],

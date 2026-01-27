@@ -7,7 +7,8 @@ from win32api import GetCursorPos, GetSystemMetrics, SetCursorPos
 import win32gui
 import ctypes
 
-from ok import PostMessageInteraction, Logger
+from ok.device.intercation import PostMessageInteraction
+from ok.util.logger import Logger
 
 logger = Logger.get_logger(__name__)
 
