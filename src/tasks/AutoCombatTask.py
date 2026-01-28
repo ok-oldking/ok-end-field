@@ -155,7 +155,7 @@ class AutoCombatTask(BaseEfTask, TriggerTask):
         return len(lv) > 0
 
     def use_e_skill(self):
-        if self.find_one('skill_e', threshold=0.7):
+        if self.find_one('skill_e', vertical_variance=0.1, threshold=0.7):
             self.send_key('e')
             self.last_op_time = time.time()
             return True
@@ -169,9 +169,11 @@ class AutoCombatTask(BaseEfTask, TriggerTask):
             'skill_4')
 
     def get_skill_bar_count(self):
-        skill_area = self.frame[self.height_of_screen(1940 / 2160):self.height_of_screen(1983 / 2160),
-                     self.width_of_screen(1586 / 3840):self.width_of_screen(2266 / 3840)]
-
+        skill_area_box = self.box_of_screen_scaled(3840, 2160, 1586, 1940, 2266, 1983)
+        # self.draw_boxes('skill_area', skill_area_box, color='yellow', debug=True)
+        # self.log_debug(f'skill_area_box {skill_area_box}')
+        skill_area = skill_area_box.crop_frame(self.frame)
+        # self.screenshot('skill_area', frame=skill_area)
         if not has_rectangles(skill_area):
             return -1
 
@@ -198,8 +200,8 @@ class AutoCombatTask(BaseEfTask, TriggerTask):
         return count
 
     def check_is_pure_color_in_4k(self, x1, y1, x2, y2, color_range=None, threshold=0.9):
-        bar = self.frame[self.height_of_screen(y1 / 2160):self.height_of_screen(y2 / 2160),
-              self.width_of_screen(x1 / 3840):self.width_of_screen(x2 / 3840)]
+        skill_area_box = self.box_of_screen_scaled(3840, 2160, x1, y1, x2, y2)
+        bar = skill_area_box.crop_frame(self.frame)
 
         if bar.size == 0:
             return False

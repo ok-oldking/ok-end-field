@@ -19,11 +19,35 @@ class BaseEfTask(BaseTask):
     def find_confirm(self):
         return self.find_one('skip_dialog_confirm', horizontal_variance=0.05, vertical_variance=0.05)
 
-    def in_world(self):
-        return self.find_one('top_left_tab')
+    def in_combat_world(self):
+        in_combat_world = self.find_one('top_left_tab')
+        if in_combat_world:
+            self._logged_in = True
+        return in_combat_world
 
     def find_f(self):
         return self.find_one('pick_f', vertical_variance=0.05)
+
+    def ensure_main(self, esc=True, time_out=30):
+        self.info_set('current task', f'wait main esc={esc}')
+        if not self.wait_until(lambda: self.is_main(esc=esc), time_out=time_out, raise_if_not_found=False):
+            raise Exception('Please start in game world and in team!')
+        self.info_set('current task', f'in main esc={esc}')
+
+    def in_world(self):
+        in_world = self.find_one('esc') and self.find_one('b') and self.find_one('c')
+        if in_world:
+            self._logged_in = True
+        return in_world
+
+    def is_main(self, esc=False):
+        if self.in_world():
+            self._logged_in = True
+            return True
+        if self.wait_login():
+            return True
+        if esc:
+            self.back(after_sleep=1.5)
 
     def wait_login(self):
         if not self._logged_in:

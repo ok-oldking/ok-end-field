@@ -12,6 +12,15 @@ class TestMyOneTimeTask(TaskTestCase):
 
     config = config
 
+    def test_16_10_combat(self):
+        self.set_image('tests/images/16_10_combat.png')
+        in_team = self.task.in_team()
+        self.task.screenshot("16_10_combat", show_box=True)
+        count = self.task.get_skill_bar_count()
+        self.task.sleep(1)
+        self.assertTrue(in_team)
+        self.assertEqual(count, 2)
+
     def test_skill_bars(self):
         self.set_image('tests/images/in_combat_5.png')
         count = self.task.get_skill_bar_count()
@@ -68,7 +77,6 @@ class TestMyOneTimeTask(TaskTestCase):
         self.set_image('tests/images/in_combat_white_red.png')
         count = self.task.get_skill_bar_count()
         self.assertEqual(count, 0)
-
 
     def test_lvs(self):
         self.set_image('tests/images/no_combat2.png')

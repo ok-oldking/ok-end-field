@@ -28,7 +28,7 @@ class AutoPickTask(BaseEfTask, TriggerTask):
         }
 
     def run(self):
-        if self.in_world():
+        if self.in_combat_world():
             while button_f := self.find_f():
                 text_zone = button_f.copy(x_offset=button_f.width * 6, width_offset=button_f.width * 12,
                                           y_offset=-button_f.height, height_offset=button_f.height * 12)

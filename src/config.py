@@ -75,9 +75,9 @@ config = {
         'min_height': 450,
     },
     'supported_resolution': {
-        'ratio': '16:9',  # 支持的游戏分辨率
+        # 'ratio': '16:9',  # 支持的游戏分辨率
         'min_size': (1280, 720),  # 支持的最低游戏分辨率
-        'resize_to': [(2560, 1440), (1920, 1080), (1600, 900), (1280, 720)],  # 可选, 如果非16:9自动缩放为 resize_to
+        # 'resize_to': [(2560, 1440), (1920, 1080), (1600, 900), (1280, 720)],  # 可选, 如果非16:9自动缩放为 resize_to
     },
     'links': {  # 关于里显示的链接, 可选
         'default': {
@@ -107,11 +107,13 @@ config = {
         'default_horizontal_variance': 0.002,  # 默认x偏移, 查找不传box的时候, 会根据coco坐标, match偏移box内的
         'default_vertical_variance': 0.002,  # 默认y偏移
         'default_threshold': 0.8,  # 默认threshold
+        'hcenter_features': ['skill_e', 'pick_f']
     },
     'version': version,  # 版本
     'my_app': ['src.globals', 'Globals'],  # 可选. 全局单例对象, 可以存放加载的模型, 使用og.my_app调用
     'onetime_tasks': [  # 用户点击触发的任务
         ["src.tasks.DailyTask", "DailyTask"],
+        ["src.tasks.BuySellTask", "BuySellTask"],
         ["ok.task.DiagnosisTask", "DiagnosisTask"],
     ],
     'trigger_tasks': [  # 不断执行的触发式任务
